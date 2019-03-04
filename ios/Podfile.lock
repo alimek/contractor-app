@@ -6,6 +6,8 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - React (0.59.0-rc.3):
+    - React/Core (= 0.59.0-rc.3)
   - React/Core (0.59.0-rc.3):
     - yoga (= 0.59.0-rc.3.React)
   - React/CxxBridge (0.59.0-rc.3):
@@ -59,6 +61,10 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNGestureHandler (1.0.17):
+    - React
+  - RNScreens (1.0.0-alpha.22):
+    - React
   - yoga (0.59.0-rc.3.React)
 
 DEPENDENCIES:
@@ -79,6 +85,8 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -94,6 +102,10 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/GLog.podspec"
   React:
     :path: "../node_modules/react-native"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -103,8 +115,10 @@ SPEC CHECKSUMS:
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
+  RNGestureHandler: afde2addc517e85cc97a25bfe119acbee779a7ce
+  RNScreens: 354046589421edc3d83d5c6212475bf1fb9a731d
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: d0fa1baede4ace108c61399db620036abeb7a455
+PODFILE CHECKSUM: 6b9698257531b6138e5a480548b9564526857f87
 
 COCOAPODS: 1.5.3
