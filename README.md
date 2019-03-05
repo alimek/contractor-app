@@ -17,3 +17,4 @@ App build for personal use. Very often have problem if I completed all declared 
     - [ ] declare hours per day
     - [ ] declare price per hour
 - [ ] Holidays
+- [ ] Security base on FaceID/TouchID
