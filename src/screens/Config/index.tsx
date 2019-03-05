@@ -4,11 +4,14 @@ import { Container } from './styles';
 
 class Config extends React.Component {
   public static navigationOptions = {
-    title: 'Config',
+    title: 'Configuration',
   };
 
   render() {
-    return <Container />;
+    return (
+      <Container>
+      </Container>
+    );
   }
 }
 

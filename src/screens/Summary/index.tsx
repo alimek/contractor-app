@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import { Container } from './styles';
 
-interface ITodayPropTypes {
+interface ISummaryPropTypes {
 
 }
 
-class Today extends React.Component<ITodayPropTypes> {
+class Summary extends React.Component<ISummaryPropTypes> {
   public static navigationOptions = {
-    title: 'Today',
+    title: 'Summary',
   };
 
   render() {
@@ -18,4 +18,4 @@ class Today extends React.Component<ITodayPropTypes> {
   }
 }
 
-export default Today;
+export default Summary;

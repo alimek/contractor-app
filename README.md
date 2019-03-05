@@ -6,9 +6,10 @@ App build for personal use. Very often have problem if I completed all declared 
 
 - [ ] Calendar with daily hours status
 - [ ] Daily screen
-    - [ ] Summary
-    - [ ] Log hours
-    - [ ] Logged hours list
+    - [x] Summary
+    - [x] Log hours
+    - [x] Logged hours list
+    - [ ] Remove added hours
 - [ ] Summary page for your hours/budget.
     - [ ] daily
     - [ ] monthly

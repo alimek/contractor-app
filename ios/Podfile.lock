@@ -8,6 +8,8 @@ PODS:
   - glog (0.3.5)
   - React (0.59.0-rc.3):
     - React/Core (= 0.59.0-rc.3)
+  - React/ART (0.59.0-rc.3):
+    - React/Core
   - React/Core (0.59.0-rc.3):
     - yoga (= 0.59.0-rc.3.React)
   - React/CxxBridge (0.59.0-rc.3):
@@ -65,12 +67,17 @@ PODS:
     - React
   - RNScreens (1.0.0-alpha.22):
     - React
+  - RNSVG (9.2.4):
+    - React
+  - RNVectorIcons (6.3.0):
+    - React
   - yoga (0.59.0-rc.3.React)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/GLog.podspec`)
+  - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -87,6 +94,8 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -106,6 +115,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -117,8 +130,10 @@ SPEC CHECKSUMS:
   React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
   RNGestureHandler: afde2addc517e85cc97a25bfe119acbee779a7ce
   RNScreens: 354046589421edc3d83d5c6212475bf1fb9a731d
+  RNSVG: 4834be1d644eb77f0e3f6de851881b83758a3124
+  RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 6b9698257531b6138e5a480548b9564526857f87
+PODFILE CHECKSUM: 2e94dac11c8eef49ca10fad94664423c3b71f2b2
 
 COCOAPODS: 1.5.3

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'Contractor' do
     # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -9,7 +9,6 @@ target 'Contractor' do
       'Core',
       'CxxBridge',
       'DevSupport',
-      # the following ones are the ones taken from "Libraries" in Xcode:
       'RCTAnimation',
       'RCTActionSheet',
       'RCTBlob',
@@ -20,7 +19,8 @@ target 'Contractor' do
       'RCTSettings',
       'RCTText',
       'RCTVibration',
-      'RCTWebSocket'
+      'RCTWebSocket',
+      'ART'
     ]
 
     pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
@@ -29,13 +29,7 @@ target 'Contractor' do
     pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
     pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
     pod 'RNScreens', :path => '../node_modules/react-native-screens'
-end
+    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-
-post_install do |installer_representation|
-  installer_representation.pods_project.targets.each do |target|
-      if target.name == "React"
-          target.remove_from_project
-      end
-  end
 end

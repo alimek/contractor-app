@@ -69,7 +69,7 @@ class Intro extends React.Component<Props, State> {
       duration: 1000,
       useNativeDriver: true,
     }).start();
-    setTimeout(this.switchToApp, 3000);
+    setTimeout(this.switchToApp, 200);
   };
 
   switchToApp = () => {
@@ -109,7 +109,7 @@ class Intro extends React.Component<Props, State> {
             {
               scale: intro.interpolate({
                 inputRange: [0, 80, 100],
-                outputRange: [1, 1.5, 2],
+                outputRange: [1, 1.8, 3],
               }),
             },
           ],
