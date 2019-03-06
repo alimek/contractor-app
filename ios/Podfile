@@ -32,4 +32,8 @@ target 'Contractor' do
     pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'react-native-async-storage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'Interactable', :path => '../node_modules/react-native-interactable'
+
 end

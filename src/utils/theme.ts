@@ -1,5 +1,6 @@
 // @ts-ignore
 import { DefaultTheme } from 'react-native-ios-kit';
+import { Theme } from 'react-native-elements';
 
 export interface ThemeInterface {
   primaryColor: string;
@@ -34,8 +35,11 @@ const textStyle = {
   fontFamily: theme.fontFamily,
 };
 
-export const elementTheme = {
+export const elementTheme: Theme = {
   Input: {
+    inputContainerStyle: {
+      marginBottom: 5,
+    },
     leftIconContainerStyle: {
       margin: 0,
     },
@@ -47,9 +51,12 @@ export const elementTheme = {
     },
   },
   Button: {
+    buttonStyle: {
+      backgroundColor: theme.primaryColor,
+    },
     titleStyle: {
       ...textStyle,
-      color: theme.primaryColor,
+      color: 'white',
     },
   },
 };

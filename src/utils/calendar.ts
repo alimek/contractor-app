@@ -1,5 +1,5 @@
 import { DateObject, DotMarking } from 'react-native-calendars';
-import moment from 'moment';
+import moment, { min } from 'moment';
 
 import { IHours, IHour } from '../interfaces/app';
 import theme from './theme';
@@ -35,7 +35,7 @@ export const prepareMarkedDates = (
 
   days.forEach((day: string) => {
     let doneHours = 0;
-    hours[day].forEach((hour) => {
+    hours[day].forEach(hour => {
       doneHours += hour.amount;
     });
 
@@ -62,7 +62,36 @@ export const calculateDayLoggedHours = (hours: IHour[] | undefined): number => {
   return total;
 };
 
-export const addHours = (hours: IHours, day: DateObject, amount: string, price: number): IHours => {
+export const addHours = (
+  hours: IHours,
+  day: DateObject,
+  amount: string,
+  description: string,
+  price: number,
+): IHours => {
+  const jiraRegex = /^(?:(?<hours>\d+)h\s*)?(?:(?<minutes>\d+)m\s*)?$/;
+  const isNumber = /^[0-9]+((\.|\,)[0-9][0-9]?)?/.test(amount);
+  const isJiraPattern = jiraRegex.test(amount);
+
+
+  if (!isNumber && !isJiraPattern) {
+    return hours;
+  }
+
+  let correctAmount: number = parseFloat(amount);
+  if (isJiraPattern) {
+    correctAmount = 0;
+
+    const [value, hours, minutes]: any = amount.match(jiraRegex);
+    if (hours) {
+      correctAmount += parseInt(hours, 10);
+    }
+
+    if (minutes) {
+      correctAmount += parseInt(minutes, 10) / 60;
+    }
+  }
+
   return produce(hours, draft => {
     const dayString = moment(day.dateString).format('YYYY-MM-DD');
 
@@ -71,8 +100,9 @@ export const addHours = (hours: IHours, day: DateObject, amount: string, price: 
     }
 
     draft[dayString].push({
-      amount: parseInt(amount, 10),
+      amount: parseFloat(correctAmount.toFixed(2)),
       price,
+      description,
       createdAt: moment().toISOString(),
     });
   });

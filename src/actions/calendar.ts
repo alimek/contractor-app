@@ -11,16 +11,16 @@ export const onDayPressed = (day: DateObject) => (dispatch: Dispatch) => {
   });
 };
 
-export const addHour = (day: DateObject, amount: string) => (
+export const addHour = (day: DateObject) => (
   dispatch: Dispatch,
   getState: Function,
 ) => {
-  const { app, config }: IStore = getState();
+  const { app, config, dayPreview }: IStore = getState();
   const { hourPrice } = config;
-  const { hours } = app;
+  const { description } = dayPreview;
 
   dispatch({
     type: LOG_HOUR,
-    hours: addHours(hours, day, amount, hourPrice),
+    hours: addHours(app.hours, day, dayPreview.hours, description, hourPrice),
   });
 };

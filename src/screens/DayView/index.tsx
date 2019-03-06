@@ -1,7 +1,7 @@
 import * as React from 'react';
 import moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
-import { ListItem, Input, Button } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import { NavigationScreenProp } from 'react-navigation';
 import { orderBy } from 'lodash';
 
@@ -20,40 +20,61 @@ import {
 import { DateObject } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { backToCalendar, setHours } from '../../actions/day-preview';
-import { addHour } from '../../actions/calendar';
-import { CircleProgress } from '../../components';
+import { backToCalendar } from '../../actions/day-preview';
+import { CircleProgress, HeaderButton } from '../../components';
 import { IStore } from '../../interfaces/store';
 import { IHour } from '../../interfaces/app';
 import { calculateDayLoggedHours } from '../../utils/calendar';
+import { AddHourModal } from '../../containers';
 
 interface IParams {
   day: DateObject;
   state: any;
+  onClickPlus: () => void;
 }
 
 interface IDayViewPropTypes {
   hoursPerDay: number;
   loggedHours: number;
   addHoursValue: string;
-  day: DateObject | null;
   actions: {
     backToCalendar: Function;
-    setHours: (text: string) => void;
-    addHour: Function;
   };
   hours: IHour[];
   navigation: NavigationScreenProp<any, IParams>;
 }
 
-class DayView extends React.Component<IDayViewPropTypes> {
+interface State {
+  isAddModalVisible: boolean;
+}
+
+class DayView extends React.Component<IDayViewPropTypes, State> {
+  state = {
+    isAddModalVisible: false,
+  };
+
   static navigationOptions = ({ navigation }: any) => {
     const { params }: { params: IParams } = navigation.state;
 
     return {
       title: moment(params.day.dateString).format('LL'),
+      headerRight: (
+        <HeaderButton
+          iconName="plus-circle"
+          onPress={navigation.getParam('onClickPlus')}
+        />
+      ),
     };
   };
+
+  constructor(props: IDayViewPropTypes) {
+    super(props);
+
+    const { navigation } = this.props;
+    navigation.setParams({
+      onClickPlus: this.toggleAddHourModal,
+    });
+  }
 
   componentWillUnmount(): void {
     const { actions } = this.props;
@@ -62,16 +83,20 @@ class DayView extends React.Component<IDayViewPropTypes> {
     backToCalendar();
   }
 
+  toggleAddHourModal = () => {
+    this.setState({
+      isAddModalVisible: !this.state.isAddModalVisible,
+    });
+  };
+
   render() {
     const {
       hoursPerDay,
       loggedHours,
       hours,
-      actions,
-      addHoursValue,
-      day,
     } = this.props;
 
+    const { isAddModalVisible } = this.state;
     const leftHours = hoursPerDay - loggedHours;
 
     return (
@@ -87,28 +112,14 @@ class DayView extends React.Component<IDayViewPropTypes> {
               <Label>Logged hours:</Label>
               <Value>{loggedHours}</Value>
             </Row>
-            {
-              leftHours > 0 ?
-                <Row>
-                  <Label>Left hours:</Label>
-                  <Value>{leftHours}</Value>
-                </Row> : null
-            }
+            {leftHours > 0 ? (
+              <Row>
+                <Label>Left hours:</Label>
+                <Value>{leftHours}</Value>
+              </Row>
+            ) : null}
           </DaySummaryContainer>
         </CardRow>
-        <Card header="Log hours">
-          <Input
-            value={addHoursValue}
-            label="How many hours you wanna log?"
-            onChangeText={actions.setHours}
-          />
-          <Button
-            disabled={addHoursValue.length === 0}
-            title="Log"
-            type="clear"
-            onPress={() => actions.addHour(day, addHoursValue)}
-          />
-        </Card>
         <Card header="Logged hours">
           <FlatList
             data={hours}
@@ -131,6 +142,10 @@ class DayView extends React.Component<IDayViewPropTypes> {
             }
           />
         </Card>
+        <AddHourModal
+          visible={isAddModalVisible}
+          onClose={this.toggleAddHourModal}
+        />
       </Container>
     );
   }
@@ -148,13 +163,12 @@ export default connect(
       hoursPerDay: store.config.hoursPerDay,
       loggedHours: calculateDayLoggedHours(hours),
       addHoursValue: store.dayPreview.hours,
-      day: store.dayPreview.day,
-      hours: orderBy(hours, ['createdAt'],  ['desc']),
+      hours: orderBy(hours, ['createdAt'], ['desc']),
     };
   },
   (dispatch: Dispatch) => ({
     actions: bindActionCreators(
-      { backToCalendar, setHours, addHour },
+      { backToCalendar },
       dispatch,
     ),
   }),

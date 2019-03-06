@@ -9,6 +9,7 @@ export interface IAppStore {
 export interface IDayPreviewStore {
   day: DateObject | null;
   hours: string;
+  description: string;
 }
 
 export interface IConfigStore {

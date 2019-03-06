@@ -10,6 +10,7 @@ App build for personal use. Very often have problem if I completed all declared 
     - [x] Log hours
     - [x] Logged hours list
     - [ ] Remove added hours
+    - [ ] Duplicate added hours
 - [ ] Summary page for your hours/budget.
     - [ ] daily
     - [ ] monthly

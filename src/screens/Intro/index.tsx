@@ -69,7 +69,7 @@ class Intro extends React.Component<Props, State> {
       duration: 1000,
       useNativeDriver: true,
     }).start();
-    setTimeout(this.switchToApp, 200);
+    setTimeout(this.switchToApp, 700);
   };
 
   switchToApp = () => {

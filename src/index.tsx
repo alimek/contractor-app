@@ -4,6 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider as ElementThemeProvider } from 'react-native-elements';
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings([
+  'Warning: Slider',
+  'Warning: ViewPagerAndroid',
+]);
 
 import {
   createAppContainer,
@@ -51,13 +57,16 @@ const SummaryStack = createStackNavigator(
   },
 );
 
-const ConfigStack = createStackNavigator({
-  Config: {
-    screen: Config,
+const ConfigStack = createStackNavigator(
+  {
+    Config: {
+      screen: Config,
+    },
   },
-}, {
-  defaultNavigationOptions,
-});
+  {
+    defaultNavigationOptions,
+  },
+);
 
 const Navigator = createBottomTabNavigator(
   {

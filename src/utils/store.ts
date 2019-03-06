@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+// @ts-ignore
+import storage from '@react-native-community/async-storage';
 
 import reducers from '../reducers';
 import { IStore } from '../interfaces/store';
@@ -11,7 +12,7 @@ const persistConfig = {
   storage,
   whitelist: [
     'config',
-    // 'app',
+    'app',
   ],
 };
 
