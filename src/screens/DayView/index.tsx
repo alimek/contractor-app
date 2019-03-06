@@ -110,12 +110,12 @@ class DayView extends React.Component<IDayViewPropTypes, State> {
             </Row>
             <Row>
               <Label>Logged hours:</Label>
-              <Value>{loggedHours}</Value>
+              <Value>{loggedHours.toFixed(2)}</Value>
             </Row>
             {leftHours > 0 ? (
               <Row>
                 <Label>Left hours:</Label>
-                <Value>{leftHours}</Value>
+                <Value>{leftHours.toFixed(2)}</Value>
               </Row>
             ) : null}
           </DaySummaryContainer>
